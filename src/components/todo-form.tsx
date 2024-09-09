@@ -7,6 +7,8 @@ import {
   Input,
 } from "@nextui-org/react";
 import { useState } from "react";
+import { todoTitle } from "./primitives";
+import { useTheme } from "@/hooks/use-theme";
 export interface ITodo {
   id?: string;
   title: string;
@@ -33,9 +35,17 @@ export default function TodoForm({
 
   return (
     <Card className="w-[100%] max-w-[500px]">
-      <CardHeader>Add a new task</CardHeader>
+      <CardHeader
+        className={todoTitle({ done: false, isDark: useTheme().isDark })}
+      >
+        Add a new task
+      </CardHeader>
       <CardBody className="gap-3">
-        <Input onChange={(e) => setTitle(e.target.value)} placeholder="Title" value={title} />
+        <Input
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="Title"
+          value={title}
+        />
         <Input
           onChange={(e) => setDescription(e.target.value)}
           placeholder="Description"

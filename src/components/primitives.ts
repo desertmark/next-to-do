@@ -51,3 +51,20 @@ export const subtitle = tv({
     fullWidth: true,
   },
 });
+
+export const todoTitle = tv({
+  base: "font-bold text-2xl",
+  variants: {
+    done: {
+      true: "line-through",
+    },
+    isDark: {
+      false: "text-amber-400",
+      true: "text-amber-200",
+    },
+  },
+  defaultVariants: {
+    done: false,
+    isDark: false,
+  },
+});

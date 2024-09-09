@@ -6,7 +6,9 @@ import {
   CardHeader,
 } from "@nextui-org/react";
 import { ITodo } from "./todo-form";
-import cx from 'classnames';
+import { tv } from "tailwind-variants";
+import { useTheme } from "@/hooks/use-theme";
+import { todoTitle } from "./primitives";
 
 export interface ITodoProps {
   todo: ITodo;
@@ -15,9 +17,12 @@ export interface ITodoProps {
 }
 
 export default function Todo({ todo, onDone, onRemove }: ITodoProps) {
+  const { isDark } = useTheme();
   return (
     <Card className="min-w-[300px] w-fit flex flex-auto">
-      <CardHeader className={cx("font-bold text-2xl", { ['line-through']: todo.done })}>{todo.title}</CardHeader>
+      <CardHeader className={todoTitle({ done: todo.done, isDark })}>
+        {todo.title}
+      </CardHeader>
       <CardBody className="gap-3">
         <p>{todo.description}</p>
       </CardBody>
